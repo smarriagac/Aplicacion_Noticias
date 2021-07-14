@@ -32,13 +32,58 @@ class _Noticia extends StatelessWidget {
       children: [
         _TarjetaTopBar(noticia, index),
         _TarjetaTitulo(noticia),
-        _TarjetaImagen(noticia)
+        _TarjetaImagen(noticia),
+        _TarjetaBody(noticia),
+        _TarjetaBotones(),
+        SizedBox(height: 10),
+        Divider()
+
       ],
       
     );
   }
 }
 
+
+class _TarjetaBotones extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          RawMaterialButton(
+            onPressed: (){},
+            fillColor: miTema.accentColor,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            child: Icon(Icons.star_border),
+          ),
+          SizedBox(width: 10),
+          RawMaterialButton(
+            onPressed: (){},
+            fillColor: Colors.blue,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            child: Icon(Icons.more),
+          )
+        ],
+      ),
+    );
+  }
+}
+class _TarjetaBody extends StatelessWidget {
+  
+  final Article noticia;
+  const _TarjetaBody( this.noticia);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: Text((noticia.description != null) ? noticia.description :''),
+    );
+  }
+}
 class _TarjetaImagen extends StatelessWidget {
   
   final Article noticia;
@@ -48,7 +93,17 @@ class _TarjetaImagen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('Hola mundo'),
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(50), bottomRight:Radius.circular(50)),
+        child: Container(
+          child: (noticia.urlToImage != null)
+                ? FadeInImage(
+                    placeholder: AssetImage('assets/img/giphy.gif'),
+                    image: NetworkImage(noticia.urlToImage))
+                : Image(image: AssetImage('assets/img/no-image.png')),
+        ),
+      ),
     );
   }
 }

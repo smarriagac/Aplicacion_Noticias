@@ -35,7 +35,7 @@ class NewsRenponse {
 class Article {
     Article({
       required this.source,
-      required this.author,
+      this.author,
       required this.title,
       required this.description,
       required this.url,
@@ -45,7 +45,7 @@ class Article {
     });
 
     Source source;
-    String author;
+    String? author;
     String title;
     String description;
     String url;
@@ -59,7 +59,7 @@ class Article {
 
     factory Article.fromMap(Map<String, dynamic> json) => Article(
         source: Source.fromMap(json["source"]),
-        author: json["author"],
+        author: json["author"] == null ? null : json["autor"],
         title: json["title"],
         description: json["description"],
         url: json["url"],
