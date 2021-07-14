@@ -52,9 +52,7 @@ class _Paginas extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       children: [
         Tab1Screen(),
-        Container(
-          color: Colors.green,
-        ),
+        Tab2Screen(),
       ],
     );
   }
