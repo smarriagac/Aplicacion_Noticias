@@ -80,7 +80,7 @@ class _TarjetaBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
-      child: Text((noticia.description != null) ? noticia.description :''),
+      child: Text(noticia.description ??= ''),
     );
   }
 }
@@ -100,7 +100,7 @@ class _TarjetaImagen extends StatelessWidget {
           child: (noticia.urlToImage != null)
                 ? FadeInImage(
                     placeholder: AssetImage('assets/img/giphy.gif'),
-                    image: NetworkImage(noticia.urlToImage))
+                    image: NetworkImage(noticia.urlToImage!))
                 : Image(image: AssetImage('assets/img/no-image.png')),
         ),
       ),

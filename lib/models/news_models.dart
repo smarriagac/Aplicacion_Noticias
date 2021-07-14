@@ -39,7 +39,7 @@ class Article {
       required this.title,
       required this.description,
       required this.url,
-      required this.urlToImage,
+      this.urlToImage,
       required this.publishedAt,
         this.content,
     });
@@ -47,9 +47,9 @@ class Article {
     Source source;
     String? author;
     String title;
-    String description;
+    String? description;
     String url;
-    String urlToImage;
+    String? urlToImage;
     DateTime publishedAt;
     String? content;
 
@@ -61,7 +61,7 @@ class Article {
         source: Source.fromMap(json["source"]),
         author: json["author"] == null ? null : json["autor"],
         title: json["title"],
-        description: json["description"],
+        description: json["description"] == null ? null : json["description"],
         url: json["url"],
         urlToImage: json["urlToImage"],
         publishedAt: DateTime.parse(json["publishedAt"]),
